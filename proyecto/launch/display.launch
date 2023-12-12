@@ -1,20 +1,18 @@
 <launch>
-  <arg
-    name="model" />
-  <param
-    name="robot_description"
-    textfile="$(find proyecto)/urdf/proyecto.urdf" />
+  <arg name="model"/>
+  <param name="robot_description" textfile="$(find proyecto)/urdf/proyecto.urdf"/>
+  <param name="use_gui" value="true"/>
   <node
-    name="joint_state_publisher_gui"
-    pkg="joint_state_publisher_gui"
-    type="joint_state_publisher_gui" />
+    name="joint_state_publisher"
+    pkg="joint_state_publisher"
+    type="joint_state_publisher"/>
   <node
     name="robot_state_publisher"
     pkg="robot_state_publisher"
-    type="robot_state_publisher" />
+    type="robot_state_publisher"/>
   <node
     name="rviz"
     pkg="rviz"
     type="rviz"
-    args="-d $(find proyecto)/urdf.rviz" />
+    args="-d $(find proyecto)/urdf.rviz" required="true"/>
 </launch>

@@ -1,0 +1,20 @@
+digraph G {
+node [shape=box];
+"dummy" [label="dummy"];
+"base_link" [label="base_link"];
+"rueda_1" [label="rueda_1"];
+"rueda_2" [label="rueda_2"];
+"rueda_3" [label="rueda_3"];
+"rueda_4" [label="rueda_4"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"dummy" -> "dummy_joint" [label="xyz: 0 0 0 \nrpy: 0 -0 0"]
+"dummy_joint" -> "base_link"
+"base_link" -> "motor_1" [label="xyz: -0.206 -0.13662 -0.041 \nrpy: 1.5708 -0 0"]
+"motor_1" -> "rueda_1"
+"base_link" -> "motor_2" [label="xyz: 0.206 -0.13722 -0.041 \nrpy: 1.5708 -0 0"]
+"motor_2" -> "rueda_2"
+"base_link" -> "motor_3" [label="xyz: 0.206 0.40485 -0.041 \nrpy: 1.5708 -0 0"]
+"motor_3" -> "rueda_3"
+"base_link" -> "motor_4" [label="xyz: -0.206 0.40485 -0.041 \nrpy: 1.5708 -0 0"]
+"motor_4" -> "rueda_4"
+}
