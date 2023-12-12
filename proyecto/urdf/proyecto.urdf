@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="proyecto">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0238551640441538 0.0295955080939407 -0.150383488449588"
+        rpy="0 0 0" />
+      <mass
+        value="4.58423641056187" />
+      <inertia
+        ixx="0.0171426025781744"
+        ixy="-0.00117297644050985"
+        ixz="-6.44110873168587E-07"
+        iyy="0.0611975209416774"
+        iyz="-1.44180477906026E-08"
+        izz="0.047936942239142" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.996078431372549 0.996078431372549 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="rueda_1">
+    <inertial>
+      <origin
+        xyz="-5.707782267661E-07 1.62246123321108E-07 -0.0158002809636204"
+        rpy="0 0 0" />
+      <mass
+        value="1.1617081622077" />
+      <inertia
+        ixx="0.00236389228715147"
+        ixy="4.31489359287888E-09"
+        ixz="-1.0352494720813E-08"
+        iyy="0.00236389275249923"
+        iyz="-3.84382849696802E-10"
+        izz="0.00380474886030968" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motor_1"
+    type="continuous">
+    <origin
+      xyz="-0.206 -0.13662 -0.041"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rueda_1" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rueda_2">
+    <inertial>
+      <origin
+        xyz="-5.70939932748038E-07 1.70203824825799E-07 -0.0158002845036977"
+        rpy="0 0 0" />
+      <mass
+        value="1.16170802075831" />
+      <inertia
+        ixx="0.00236389190749364"
+        ixy="4.17076010684076E-09"
+        ixz="-1.02346075643399E-08"
+        iyy="0.00236389199803286"
+        iyz="-3.3379979456675E-10"
+        izz="0.00380474815292817" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motor_2"
+    type="continuous">
+    <origin
+      xyz="0.206 -0.13722 -0.041"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rueda_2" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rueda_3">
+    <inertial>
+      <origin
+        xyz="-5.68417477253558E-07 1.5914319984045E-07 -0.0158002861455108"
+        rpy="0 0 0" />
+      <mass
+        value="1.16170796588524" />
+      <inertia
+        ixx="0.00236389186490612"
+        ixy="4.01027152496691E-09"
+        ixz="-1.02259963222408E-08"
+        iyy="0.00236389220132705"
+        iyz="-6.50631578097961E-11"
+        izz="0.00380474818303864" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motor_3"
+    type="continuous">
+    <origin
+      xyz="0.206 0.40485 -0.041"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rueda_3" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="rueda_4">
+    <inertial>
+      <origin
+        xyz="-5.6539903606212E-07 1.59169349568666E-07 -0.0158002801193847"
+        rpy="0 0 0" />
+      <mass
+        value="1.16170814603751" />
+      <inertia
+        ixx="0.00236389150685971"
+        ixy="4.25227136254966E-09"
+        ixz="-1.01857246698411E-08"
+        iyy="0.00236389215419066"
+        iyz="-1.42758019381842E-10"
+        izz="0.0038047478960785" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://proyecto/meshes/rueda_4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="motor_4"
+    type="continuous">
+    <origin
+      xyz="-0.206 0.40485 -0.041"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rueda_4" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+</robot>
