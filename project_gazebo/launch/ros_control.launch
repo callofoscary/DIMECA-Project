@@ -1,0 +1,5 @@
+<!-- ros_control.launch -->
+<launch>
+  <rosparam file="$(find project_gazebo)/config/controllers.yaml" command="load"/>
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" ns="/project_gazebo" args="motor_1 motor_2 motor_3 motor_4"/>
+</launch>

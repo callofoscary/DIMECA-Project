@@ -1,6 +1,9 @@
 <launch>
   <include
     file="$(find gazebo_ros)/launch/empty_world.launch" />
+    <!-- ... existing content ... -->
+  <include file="$(find project_gazebo)/launch/ros_control.launch"/>
+  <include file="$(find project_gazebo)/launch/teleop.launch"/>
   <node
     name="tf_footprint_base"
     pkg="tf"
