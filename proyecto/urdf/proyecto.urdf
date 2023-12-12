@@ -4,7 +4,7 @@
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
 <robot
   name="proyecto">
-  <link name="dummy">
+  <link name="odom">
    </link>
   <link
     name="base_link">
@@ -96,7 +96,7 @@
       link="base_link" />
     <child
       link="rueda_1" />
-    <axis xyz="0 1 0" />
+    <axis xyz="0 0 1" />
   </joint>
   <link
     name="rueda_2">
@@ -149,7 +149,7 @@
     <child
       link="rueda_2" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 0 1" />
   </joint>
   <link
     name="rueda_3">
@@ -202,7 +202,7 @@
     <child
       link="rueda_3" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 0 1" />
   </joint>
   <link
     name="rueda_4">
@@ -255,21 +255,21 @@
     <child
       link="rueda_4" />
     <axis
-      xyz="0 1 0" />
+      xyz="0 0 1" />
   </joint>
   
   <joint name="dummy_joint" type="fixed">
-    <parent link="dummy"/>
+    <parent link="odom"/>
      <child link="base_link"/>
    </joint>
   
   <transmission name="tran1">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="motor_1">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor1">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -277,10 +277,10 @@
   <transmission name="tran2">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="motor_2">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor2">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -288,10 +288,10 @@
   <transmission name="tran3">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="motor_3">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor3">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -299,10 +299,10 @@
   <transmission name="tran4">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="motor_4">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
     </joint>
     <actuator name="motor4">
-      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
