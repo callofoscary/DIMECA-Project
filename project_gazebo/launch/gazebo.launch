@@ -12,7 +12,7 @@
     <arg name="debug" value="false"/>
   </include>
     <!-- ... existing content ... -->
-  <include file="$(find project_gazebo)/launch/ros_control.launch"/>
+  <param name="robot_description" command="$(find xacro)/xacro $(find proyecto)/urdf/proyecto.urdf.xacro" />
   
   <node
     name="tf_footprint_base"
@@ -21,11 +21,15 @@
     args="0 0 0 0 0 0 base_link base_footprint 40" />
 
   <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher"/>
+
+  <node
     name="spawn_model"
     pkg="gazebo_ros"
     type="spawn_model"
-    args="-file $(find proyecto)/urdf/proyecto.urdf -urdf -model proyecto -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)" output="screen" />
-
+    args="-urdf -model proyecto -param robot_description -model proyecto -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)" output="screen" />
   <node
     name="fake_joint_calibration"
     pkg="rostopic"
