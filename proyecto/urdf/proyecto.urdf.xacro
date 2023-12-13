@@ -1,35 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <robot name="proyecto" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <xacro:macro name="wheel" params="suffix">
+  <xacro:property name="wheel_x" value="0.206" />
+  <xacro:property name="front_wheel_y" value="-0.13662" />
+  <xacro:property name="back_wheel_y" value="0.40485" />
+  <xacro:property name="wheel_z" value="-0.041" />
+
+  <xacro:macro name="wheel" params="suffix *joint_pose">
     <link name="rueda_${suffix}">
       <inertial>
         <origin xyz="-5.707782267661E-07 1.62246123321108E-07 -0.0158002809636204" rpy="0 0 0"/>
         <mass value="1.1617081622077"/>
         <inertia ixx="0.00236389228715147" ixy="4.31489359287888E-09" ixz="-1.0352494720813E-08"
                  iyy="0.00236389275249923" iyz="-3.84382849696802E-10" izz="0.00380474886030968"/>
-      </inertial>
+        </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://proyecto/meshes/rueda_${suffix}.STL"/>
-        </geometry>
-        <material name="">
-          <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
-        </material>
+          <geometry>
+            <mesh filename="package://proyecto/meshes/rueda_1.STL"/>
+          </geometry>
+          <material name="">
+            <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
+          </material>
       </visual>
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://proyecto/meshes/rueda_${suffix}.STL"/>
-        </geometry>
+          <geometry>
+            <mesh filename="package://proyecto/meshes/rueda_1.STL"/>
+          </geometry>
       </collision>
     </link>
 
     <joint name="motor_${suffix}" type="continuous">
-      <origin xyz="-0.206 -0.13662 -0.041" rpy="${pi/2.0} 0 0"/>
       <parent link="base_link"/>
       <child link="rueda_${suffix}"/>
+      <xacro:insert_block name="joint_pose" />
       <axis xyz="0 0 1"/>
     </joint>
 
@@ -38,18 +43,29 @@
       <joint name="motor_${suffix}">
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
       </joint>
-      <actuator name="motor_${suffix}">
+      <actuator name="motor${suffix}">
         <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
         <mechanicalReduction>1</mechanicalReduction>
       </actuator>
     </transmission>
   </xacro:macro>
 
-  <xacro:wheel suffix="1"/>
-  <xacro:wheel suffix="2"/>
-  <xacro:wheel suffix="3"/>
-  <xacro:wheel suffix="4"/>
+  <xacro:wheel suffix="1">
+    <origin xyz="${-wheel_x} ${front_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
 
+  <xacro:wheel suffix="2">
+    <origin xyz="${wheel_x} ${front_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel suffix="3">
+    <origin xyz="${wheel_x} ${back_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel suffix="4">
+    <origin xyz="${-wheel_x} ${back_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
+ 
   <link name="odom"/>
   <link name="base_link">
     <inertial>
