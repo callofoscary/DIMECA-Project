@@ -6,21 +6,21 @@ robot:
 
   # VelocityControllers ---------------------------------------
   motor_1:
-    type: "effort_controllers/JointVelocityController"
+    type: "effort_controllers/JointPositionController"
     joint: "motor_1"
     pid: {p: 1.0, i: 0.1, d: 0.01}
 
   motor_2:
-    type: "effort_controllers/JointVelocityController"
+    type: "effort_controllers/JointPositionController"
     joint: "motor_2"
     pid: {p: 1.0, i: 0.1, d: 0.01}
 
   motor_3:
-    type: "effort_controllers/JointVelocityController"
+    type: "effort_controllers/JointPositionController"
     joint: "motor_3"
     pid: {p: 1.0, i: 0.1, d: 0.01}
 
   motor_4:
-    type: "effort_controllers/JointVelocityController"
+    type: "effort_controllers/JointPositionController"
     joint: "motor_4"
     pid: {p: 1.0, i: 0.1, d: 0.01}
