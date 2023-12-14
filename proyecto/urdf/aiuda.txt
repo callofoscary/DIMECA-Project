@@ -16,3 +16,6 @@ motor_3: xyz="0.206 0.40485 -0.041"
 
 
 motor_4: xyz="-0.206 0.40485 -0.041"
+
+<xacro:property name="wheel_radius" value="0.075" />
+<xacro:property name="wheel_width" value="0.079" />
