@@ -24,9 +24,6 @@
 
       <param name="robot_description" command="$(find xacro)/xacro '$(find proyecto)/urdf/proyecto.urdf.xacro'" />
 
-      <!-- Convert xacro to URDF -->
-      <node name="xacro" pkg="xacro" type="xacro" args="$(find proyecto)/urdf/proyecto.urdf.xacro" output="screen" />
-
       <!-- Spawn the URDF model -->
       <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
             args="-urdf -param robot_description -model proyecto -x $(arg x) -y $(arg y) -z $(arg z)" />
@@ -39,6 +36,12 @@
             <rosparam command="load" file="$(find project_gazebo)/config/twist_mux.yaml" />
             <remap from="cmd_vel_out" to="jackal_velocity_controller/cmd_vel"/>
       </node>
+
+    <node 
+      name="tf_footprint_base"
+      pkg="tf"
+      type="static_transform_publisher"
+      args="0 0 0.15 0 0 0 odom base_footprint 40" />
 
     
 

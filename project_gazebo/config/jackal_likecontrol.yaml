@@ -17,7 +17,7 @@ jackal_velocity_controller:
 
   enable_odom_tf: false
 
-  wheel_separation_multiplier: 1.5
+  wheel_separation_multiplier: 1
   wheel_radius_multiplier: 1.0
 
   linear:
