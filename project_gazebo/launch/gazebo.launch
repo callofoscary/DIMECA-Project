@@ -7,7 +7,7 @@
     <arg name="headless" default="false" />
     <arg name="x" default="0" />
     <arg name="y" default="0" />
-    <arg name="z" default="15" />
+    <arg name="z" default="0.15" />
 
      <rosparam command="load" file="$(find project_gazebo)/config/jackal_likecontrol.yaml" />
 
@@ -25,8 +25,7 @@
       <param name="robot_description" command="$(find xacro)/xacro '$(find proyecto)/urdf/proyecto.urdf.xacro'" />
 
       <!-- Spawn the URDF model -->
-      <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
-            args="-urdf -param robot_description -model proyecto -x $(arg x) -y $(arg y) -z $(arg z)" />
+      <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model proyecto -x $(arg x) -y $(arg y) -z $(arg z)" />
 
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />

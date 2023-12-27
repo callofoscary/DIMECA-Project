@@ -5,8 +5,8 @@
   <xacro:property name="front_wheel_y" value="-0.13662" />
   <xacro:property name="back_wheel_y" value="0.40485" />
   <xacro:property name="wheel_z" value="-0.041" />
-  <xacro:property name="wheel_radius" value="78.5" />
-  <xacro:property name="wheel_width" value="15.8" />
+  <xacro:property name="wheel_radius" value="0.0785" />
+  <xacro:property name="wheel_width" value="0.0158" />
   <xacro:property name="chasis_lenght" value="58.1"/>
   <xacro:property name="chasis_width" value="52.9"/>
   <xacro:property name="chasis_height" value="25.3"/>
@@ -16,6 +16,12 @@
 
   <xacro:macro name="wheel" params="suffix *joint_pose">
     <link name="rueda_${suffix}">
+        <inertial>
+          <origin xyz="-5.707782267661E-07 1.62246123321108E-07 -0.0158002809636204" rpy="0 0 0"/>
+          <mass value="1.1617081622077"/>
+          <inertia ixx="0.00236389228715147" ixy="4.31489359287888E-09" ixz="-1.0352494720813E-08"
+                  iyy="0.00236389275249923" iyz="-3.84382849696802E-10" izz="0.00380474886030968"/>
+        </inertial>
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
           <geometry>
@@ -28,15 +34,10 @@
       <collision>
         <origin xyz="0 0 0" rpy="0 0 0"/>
           <geometry>
-            <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+             <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+            <!-- <mesh filename="package://proyecto/meshes/rueda_1.STL"/>-->
           </geometry>
       </collision>
-        <inertial>
-          <origin xyz="-5.707782267661E-07 1.62246123321108E-07 -0.0158002809636204" rpy="0 0 0"/>
-          <mass value="1.1617081622077"/>
-          <inertia ixx="0.00236389228715147" ixy="4.31489359287888E-09" ixz="-1.0352494720813E-08"
-                  iyy="0.00236389275249923" iyz="-3.84382849696802E-10" izz="0.00380474886030968"/>
-        </inertial>
     </link>
 
     <joint name="motor_${suffix}" type="continuous">
@@ -75,6 +76,7 @@
   </xacro:wheel>
  
   <link name="odom"/>
+
   <link name="base_link">
     <inertial>
       <origin xyz="0.0238551640441538 0.0295955080939407 -0.150383488449588" rpy="0 0 0"/>
@@ -94,7 +96,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
-              <box size="${chasis_lenght} ${chasis_width} ${chasis_height}"/>
+              <mesh filename="package://proyecto/meshes/base_link.STL"/>
       </geometry>
     </collision>
   </link>
