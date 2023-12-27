@@ -1,0 +1,15 @@
+# Contenido del archivo urdf.rviz
+- GLOBAL_OPTIONS
+  Fixed Frame: odom
+
+- RobotModel
+  Robot Description: /robot_description
+  Visual Enabled: true
+  Collision Enabled: true
+
+- TF
+  Tree Type: Hierarchical
+  Marker Scale: 0.03
+  Show Names: true
+  Show Arrows: true
+  Show Axes: true

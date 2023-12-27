@@ -16,4 +16,6 @@
     pkg="rviz"
     type="rviz"
     args="-d $(find proyecto)/urdf.rviz" required="true"/>
+    <param name="rviz/default_plugin" value="rviz/RobotModel" />
+
 </launch>

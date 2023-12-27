@@ -9,11 +9,11 @@
     <arg name="y" default="0" />
     <arg name="z" default="0.15" />
 
-     <rosparam command="load" file="$(find project_gazebo)/config/jackal_likecontrol.yaml" />
+     <rosparam command="load" file="$(find project_gazebo)/config/diff_control.yaml" />
 
 
       <node name="controller_spawner" pkg="controller_manager" type="spawner"
-        args="jackal_joint_publisher jackal_velocity_controller" />
+        args="mobile_base_controller" />
 
       <include file="$(find gazebo_ros)/launch/empty_world.launch">
             <arg name="debug" value="0" />
@@ -30,17 +30,11 @@
 
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
-
-    <node pkg="twist_mux" type="twist_mux" name="twist_mux">
-            <rosparam command="load" file="$(find project_gazebo)/config/twist_mux.yaml" />
-            <remap from="cmd_vel_out" to="jackal_velocity_controller/cmd_vel"/>
-      </node>
-
     <node 
       name="tf_footprint_base"
       pkg="tf"
       type="static_transform_publisher"
-      args="0 0 0.15 0 0 0 odom base_footprint 40" />
+      args="0 0 0 0 0 0 odom base_footprint 40" />
 
     
 

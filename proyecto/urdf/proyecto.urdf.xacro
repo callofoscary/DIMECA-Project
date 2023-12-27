@@ -6,11 +6,16 @@
   <xacro:property name="back_wheel_y" value="0.40485" />
   <xacro:property name="wheel_z" value="-0.041" />
   <xacro:property name="wheel_radius" value="0.0785" />
-  <xacro:property name="wheel_width" value="0.0158" />
-  <xacro:property name="chasis_lenght" value="58.1"/>
-  <xacro:property name="chasis_width" value="52.9"/>
-  <xacro:property name="chasis_height" value="25.3"/>
+  <xacro:property name="wheel_width" value="0.078" />
+  <xacro:property name="chasis_lenght" value="0.581"/>
+  <xacro:property name="chasis_width" value="0.529"/>
+  <xacro:property name="chasis_height" value="0.253"/>
   <xacro:property name="pi" value="3.14159265358979323846" />
+
+  <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
+  <material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
+  <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
+  <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
 
  
 
@@ -27,12 +32,10 @@
           <geometry>
             <mesh filename="package://proyecto/meshes/rueda_1.STL"/>
           </geometry>
-          <material name="">
-            <color rgba="0.792156862745098 0.819607843137255 0.933333333333333 1"/>
-          </material>
+          <material name="black" />
       </visual>
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <origin xyz="0 0 -0.015" rpy="0 0 0"/>
           <geometry>
              <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
             <!-- <mesh filename="package://proyecto/meshes/rueda_1.STL"/>-->
@@ -89,14 +92,13 @@
       <geometry>
         <mesh filename="package://proyecto/meshes/base_link.STL"/>
       </geometry>
-      <material name="">
-        <color rgba="0.996078431372549 0.996078431372549 1 1"/>
-      </material>
+      <material name="yellow" />
     </visual>
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
               <mesh filename="package://proyecto/meshes/base_link.STL"/>
+             <!-- <box size="${chasis_lenght} ${chasis_width} ${chasis_height}"/> -->
       </geometry>
     </collision>
   </link>
