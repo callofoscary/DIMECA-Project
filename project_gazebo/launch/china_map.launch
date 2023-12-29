@@ -14,7 +14,7 @@
       pkg="controller_manager" type="spawner"
       args="mobile_base_controller" />
 
-    <arg name="world_name" value="$(find agribot_gazebo)/worlds/emptyfarm.world"/>
+    <arg name="world_name" value="$(find tdf_gazebo)/worlds/tdf_gazebo.world"/>
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
       <arg name="world_name" value="$(arg world_name)" />
 
