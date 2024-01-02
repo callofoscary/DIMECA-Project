@@ -17,7 +17,7 @@
       pkg="controller_manager" type="spawner"
       args="mobile_base_controller" />
     
-    <arg name="world_name" default="/home/oscar/dimeca_ws/src/DIMECA-Project/project_gazebo/gazebo_maps/small_maze/smaze2d.world"/>
+    <arg name="world_name" value="$(find project_gazebo)/gazebo_maps/large_mine_abandoned/lcmine.world"/>
 
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">

@@ -1,6 +1,3 @@
-[submodule "gazebo_maps"]
-	path = gazebo_maps
-	url = https://github.com/engcang/gazebo_maps
 [submodule "tdf_gazebo"]
 	path = tdf_gazebo
 	url = https://github.com/rsanchezmo/tdf_gazebo.git
