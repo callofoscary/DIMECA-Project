@@ -17,7 +17,7 @@
       pkg="controller_manager" type="spawner"
       args="mobile_base_controller" />
     
-  <arg name="world_name" default="/home/callofoscary/dimeca_ws/src/DIMECA-Project/gazebo_maps/small_maze/smaze2d.world"/>
+  <arg name="world_name" default="$(find project_gazebo)/gazebo_maps/small_maze/smaze2d.world"/>
 
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
           <arg name="world_name" value="$(arg world_name)" />
