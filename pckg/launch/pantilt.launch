@@ -1,0 +1,101 @@
+ 
+ <launch>
+
+
+  <arg name="use_rviz"                 default="true"/>
+  
+  
+
+
+  <include file="$(find pckg)/launch/xsturret_gazebo.launch" >
+    <arg name="robot_model"                       value="wxxms"/>
+    <arg name="use_rviz"                 default="$(arg use_rviz)"/>
+    <arg name="paused"                            default="false"/>
+ </include>
+ 
+ 
+ 
+     <rosparam command="load" file="$(find project_gazebo)/config/diff_control.yaml" />
+
+    <node 
+      name="controller_spawner" 
+      pkg="controller_manager" type="spawner"
+      args="mobile_base_controller"  ns="base"/>
+ 
+ 
+ 
+ 
+
+
+    <node
+        name="pan_tilt"
+        pkg="pckg"
+        type="pan_tilt"
+        respawn="false"
+        output="screen"
+    />
+
+
+    <node
+        name="tracker"
+        pkg="pckg"
+        type="coord_tracker"
+        respawn="false"
+        output="screen"
+    />
+    
+<node name="simple_interface.py" pkg="pckg" type="simple_interface.py">
+  </node>
+  
+  <arg name="use_sim_time" default="true" />
+    <arg name="gui" default="true" />
+    <arg name="headless" default="false" />
+    <arg name="x" default="0" />
+    <arg name="y" default="0" />
+    <arg name="z" default="0.15" />
+    
+
+
+      
+      
+      <node 
+      name="tf_footprint_base"
+      pkg="tf"
+      type="static_transform_publisher"
+      args="0 0 0 0 0 0 odom base_footprint 40" />
+      
+    <node 
+      pkg="teleop_twist_keyboard" 
+      type="teleop_twist_keyboard.py" 
+      name="teleop" output="screen" launch-prefix="xterm -e">
+      <remap from="cmd_vel" to="/mobile_base_controller/cmd_vel"/>
+  </node>
+    
+
+    
+	<node pkg="octomap_server" type="octomap_server_node" name="octomap_server" >
+		<param name="resolution" value="0.05" />
+		
+		<!-- fixed map frame (set to 'map' if SLAM or localization running!) -->
+		<param name="frame_id" type="string" value="odom" />
+		
+		<!-- maximum range to integrate (speedup!) -->
+		<param name="sensor_model/max_range" value="5.0" />
+		
+		<!-- data source to integrate (PointCloud2) -->
+		<remap from="cloud_in" to="/camera1/depth/points" />
+	
+	</node>
+
+
+    
+
+    
+    
+
+ 
+    
+
+    
+</launch>
+

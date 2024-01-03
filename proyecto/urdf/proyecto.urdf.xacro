@@ -9,10 +9,12 @@
   <xacro:property name="wheel_width" value="0.078" />
   <xacro:property name="pi" value="3.14159265358979323846" />
 
+
   <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
   <material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
   <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+
 
  
 
@@ -102,6 +104,9 @@
     <parent link="odom"/>
     <child link="base_link"/>
   </joint>
+
+
+
 
  <gazebo>
     <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
