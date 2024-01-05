@@ -25,12 +25,11 @@
                                                          external_urdf_loc:=$(arg external_urdf_loc)
                                                          load_gazebo_configs:=$(arg load_gazebo_configs)"/>
                                                          
-                                                         
-
-  <param name="$(arg robot_name)/robot_description" command="$(find jackal_description)/scripts/$(arg env_runner)
-                    $(find jackal_description)/urdf/configs/$(arg config)
+  <param name="$(arg robot_name)/robot_description" command="
                     $(find xacro)/xacro $(arg model)
-                    --inorder"/>
+                    --inorder"/>                                                         
+
+
 
   <node if="$(arg use_joint_pub)"
     name="joint_state_publisher"

@@ -3,8 +3,7 @@
 <xacro:property name="name" value="oakd"/>
 <xacro:include filename="$(find pckg)/urdf/materials.xacro" />
 <xacro:include filename="$(find pckg)/urdf/oakd.gazebo" />
-<xacro:include filename="$(find proyecto)/urdf/proyecto.urdf.xacro">
-</xacro:include>
+
 
     <xacro:property name="flag_color" value="1"/>
     <xacro:property name="flag_depth" value="0"/>
@@ -13,14 +12,14 @@
 	<xacro:property name="oakd_cam_left_offset" value="0.0375"/>
 	<xacro:property name="oakd_cam_right_offset" value="-0.0375"/>
     <xacro:property name="real" value="$(arg is_real)" />
-<xacro:if value="$(arg use_world_frame)">
+
     <!--<link name="world"/>-->
     <joint name="fixed" type="fixed">
         <origin xyz="0 0 0.5" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="base_linkT"/>
     </joint>
-</xacro:if>
+
     
 <link name="base_linkT">
   <inertial>
@@ -318,5 +317,111 @@
 			</plugin>
 		</sensor>
 	</xacro:if>
+    
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
 	</gazebo>
+    
+  <xacro:property name="wheel_x" value="0.206" />
+  <xacro:property name="front_wheel_y" value="-0.13662" />
+  <xacro:property name="back_wheel_y" value="0.40485" />
+  <xacro:property name="wheel_z" value="-0.041" />
+  <xacro:property name="wheel_radius" value="0.0785" />
+  <xacro:property name="wheel_width" value="0.078" />
+  <xacro:property name="pi" value="3.14159265358979323846" />
+
+
+  <material name="dark_grey"><color rgba="0.2 0.2 0.2 1.0" /></material>
+  <material name="light_grey"><color rgba="0.4 0.4 0.4 1.0" /></material>
+  <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
+  <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
+
+
+ 
+
+  <xacro:macro name="wheel" params="suffix *joint_pose">
+    <link name="rueda_${suffix}">
+        <inertial>
+          <origin xyz="-5.707782267661E-07 1.62246123321108E-07 -0.0158002809636204" rpy="0 0 0"/>
+          <mass value="1.1617081622077"/>
+          <inertia ixx="0.00236389228715147" ixy="4.31489359287888E-09" ixz="-1.0352494720813E-08"
+                  iyy="0.00236389275249923" iyz="-3.84382849696802E-10" izz="0.00380474886030968"/>
+        </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+          <geometry>
+            <mesh filename="package://proyecto/meshes/rueda_1.STL"/>
+          </geometry>
+          <material name="black" />
+      </visual>
+      <collision>
+        <origin xyz="0 0 -0.015" rpy="0 0 0"/>
+          <geometry>
+             <cylinder radius="${wheel_radius}" length="${wheel_width}"/>
+          </geometry>
+      </collision>
+    </link>
+
+    <joint name="motor_${suffix}" type="continuous">
+      <parent link="base_link"/>
+      <child link="rueda_${suffix}"/>
+      <xacro:insert_block name="joint_pose" />
+      <axis xyz="0 0 1"/>
+    </joint>
+
+    <transmission name="tran_${suffix}">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="motor_${suffix}">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      </joint>
+      <actuator name="actuator_${suffix}">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+  </xacro:macro>
+
+  <xacro:wheel suffix="1">
+    <origin xyz="${-wheel_x} ${front_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel suffix="2">
+    <origin xyz="${wheel_x} ${front_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel suffix="3">
+    <origin xyz="${wheel_x} ${back_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
+
+  <xacro:wheel suffix="4">
+    <origin xyz="${-wheel_x} ${back_wheel_y} ${wheel_z}" rpy="${pi/2} 0 0" />
+  </xacro:wheel>
+ 
+  
+  <link name="base_link">
+    <inertial>
+      <origin xyz="0.0238551640441538 0.0295955080939407 -0.150383488449588" rpy="0 0 0"/>
+      <mass value="4.58423641056187"/>
+      <inertia ixx="0.0171426025781744" ixy="-0.00117297644050985" ixz="-6.44110873168587E-07"
+               iyy="0.0611975209416774" iyz="-1.44180477906026E-08" izz="0.047936942239142"/>
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://proyecto/meshes/base_link.STL"/>
+      </geometry>
+      <material name="yellow" />
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+              <mesh filename="package://proyecto/meshes/base_link.STL"/>
+      </geometry>
+    </collision>
+  </link>
+
+  
+
+
+
 </robot>

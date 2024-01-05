@@ -13,15 +13,9 @@
     <arg name="paused"                            default="false"/>
  </include>
  
- 
- 
-     <rosparam command="load" file="$(find project_gazebo)/config/diff_control.yaml" />
 
-    <node 
-      name="controller_spawner" 
-      pkg="controller_manager" type="spawner"
-      args="mobile_base_controller"  ns="base"/>
  
+
  
  
  
@@ -62,13 +56,13 @@
       name="tf_footprint_base"
       pkg="tf"
       type="static_transform_publisher"
-      args="0 0 0 0 0 0 odom base_footprint 40" />
+      args="0 0 0 0 0 0 odom base_footprint 40"  />
       
     <node 
       pkg="teleop_twist_keyboard" 
       type="teleop_twist_keyboard.py" 
-      name="teleop" output="screen" launch-prefix="xterm -e">
-      <remap from="cmd_vel" to="/mobile_base_controller/cmd_vel"/>
+      name="teleop" output="screen" >
+      <remap from="cmd_vel" to="/wxxms/mobile_base_controller/cmd_vel" />
   </node>
     
 

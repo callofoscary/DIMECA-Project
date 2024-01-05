@@ -35,7 +35,8 @@
       respawn="false"
       output="screen"
       ns="$(arg robot_name)"
-      args="spawn joint_state_controller pan_controller tilt_controller"/>
+      args="spawn joint_state_controller pan_controller tilt_controller mobile_base_controller"/>
+      
 
   </group>
   
