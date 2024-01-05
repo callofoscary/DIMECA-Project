@@ -3,6 +3,10 @@
 <xacro:property name="name" value="oakd"/>
 <xacro:include filename="$(find pckg)/urdf/materials.xacro" />
 <xacro:include filename="$(find pckg)/urdf/oakd.gazebo" />
+  <xacro:include filename="$(find sick_tim)/urdf/sick_tim.urdf.xacro" />
+  <xacro:include filename="$(find lms1xx)/urdf/sick_lms1xx.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_inverted_mount.urdf.xacro" />
+  <xacro:include filename="$(find jackal_description)/urdf/accessories/sick_lms1xx_upright_mount.urdf.xacro" />
 
 
     <xacro:property name="flag_color" value="1"/>
@@ -194,6 +198,29 @@
 	</joint>
 	<link name="${name}_right_optical_frame"/>
 
+
+
+
+
+	<!--<xacro:sick_lms1xx_upright_mount topic="/laser" prefix="" parent_link="base_link">
+            <origin xyz="$(optenv JACKAL_LASER_OFFSET 0 0 0)" rpy="$(optenv JACKAL_LASER_RPY 0 0 0)" />
+          </xacro:sick_lms1xx_upright_mount> -->
+
+<xacro:sick_lms1xx frame="laser" topic="front/scan" />
+        <link name="front_laser"/>
+        <joint name="laser_base_joint" type="fixed">
+          <origin xyz="0 0 0.2" rpy="0 0 0"/>
+          <parent link="base_link"/>
+          <child link="front_laser"/>
+        </joint>
+        <joint name="laser_joint" type="fixed">
+          <origin xyz="0 0 0.116" rpy="0 0 0"/>
+          <parent link="front_laser"/>
+          <child link="laser"/>
+        </joint>
+
+
+
 	<gazebo reference="${name}_color_frame">
 	<xacro:if value="${flag_color}" >
 		<sensor name="${name}_rgb_sensor" type="camera">
@@ -337,7 +364,37 @@
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
 
 
- 
+ <gazebo>
+    <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
+      <robotNamespace>/</robotNamespace>
+      <updateRate>50.0</updateRate>
+      <bodyName>imu_link</bodyName>
+      <topicName>imu/data</topicName>
+      <accelDrift>0.005 0.005 0.005</accelDrift>
+      <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+      <rateDrift>0.005 0.005 0.005 </rateDrift>
+      <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+      <headingDrift>0.005</headingDrift>
+      <headingGaussianNoise>0.005</headingGaussianNoise>
+    </plugin>
+  </gazebo>
+
+  <gazebo>
+    <plugin name="gps_controller" filename="libhector_gazebo_ros_gps.so">
+      <updateRate>40</updateRate>
+      <robotNamespace>/</robotNamespace>
+      <bodyName>navsat_link</bodyName>
+      <frameId>base_link</frameId>
+      <topicName>/navsat/fix</topicName>
+      <velocityTopicName>/navsat/vel</velocityTopicName>
+      <referenceLatitude>$(optenv GAZEBO_WORLD_LAT 49.9)</referenceLatitude>
+      <referenceLongitude>$(optenv GAZEBO_WORLD_LON 8.9)</referenceLongitude>
+      <referenceHeading>90</referenceHeading>
+      <referenceAltitude>0</referenceAltitude>
+      <drift>0.0001 0.0001 0.0001</drift>
+    </plugin>
+  </gazebo>
+
 
   <xacro:macro name="wheel" params="suffix *joint_pose">
     <link name="rueda_${suffix}">
