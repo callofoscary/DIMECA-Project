@@ -19,7 +19,7 @@
 
     <!--<link name="world"/>-->
     <joint name="fixed" type="fixed">
-        <origin xyz="0 0 0.5" rpy="0 0 0" />
+        <origin xyz="0.2 0.2 0.15" rpy="0 0 0" />
       <parent link="base_link"/>
       <child link="base_linkT"/>
     </joint>
@@ -423,7 +423,7 @@
       <parent link="base_link"/>
       <child link="rueda_${suffix}"/>
       <xacro:insert_block name="joint_pose" />
-      <axis xyz="0 0 1"/>
+      <axis xyz="0 0 -1"/>
     </joint>
 
     <transmission name="tran_${suffix}">
