@@ -19,7 +19,7 @@
 
     <!--<link name="world"/>-->
     <joint name="fixed" type="fixed">
-        <origin xyz="0.2 0.2 0.15" rpy="0 0 0" />
+        <origin xyz="0.126 0.15 0.17" rpy="0 0 1.570796327" />
       <parent link="base_link"/>
       <child link="base_linkT"/>
     </joint>
@@ -34,14 +34,14 @@
   <visual>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://pckg/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://pckg/meshes/base_link2.stl" scale="0.001 0.001 0.001"/>
     </geometry>
     <material name="silver"/>
   </visual>
   <collision>
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <geometry>
-      <mesh filename="package://pckg/meshes/base_link.stl" scale="0.001 0.001 0.001"/>
+      <mesh filename="package://pckg/meshes/base_link2.stl" scale="0.001 0.001 0.001"/>
     </geometry>
   </collision>
 </link>
@@ -209,7 +209,7 @@
 <xacro:sick_lms1xx frame="laser" topic="front/scan" />
         <link name="front_laser"/>
         <joint name="laser_base_joint" type="fixed">
-          <origin xyz="0 0 0.2" rpy="0 0 0"/>
+          <origin xyz="0 0.15 0.17" rpy="0 0 0"/>
           <parent link="base_link"/>
           <child link="front_laser"/>
         </joint>
@@ -363,7 +363,7 @@
   <material name="yellow"><color rgba="0.8 0.8 0.0 1.0" /></material>
   <material name="black"><color rgba="0.15 0.15 0.15 1.0" /></material>
 
-
+<!--
  <gazebo>
     <plugin name="imu_controller" filename="libhector_gazebo_ros_imu.so">
       <robotNamespace>/</robotNamespace>
@@ -394,7 +394,7 @@
       <drift>0.0001 0.0001 0.0001</drift>
     </plugin>
   </gazebo>
-
+-->
 
   <xacro:macro name="wheel" params="suffix *joint_pose">
     <link name="rueda_${suffix}">

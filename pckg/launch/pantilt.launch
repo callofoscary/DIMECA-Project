@@ -35,8 +35,14 @@
         output="screen"
     />
     
-<node name="simple_interface.py" pkg="pckg" type="simple_interface.py">
-  </node>
+  <node
+      name="simple_interface"
+      pkg="pckg"
+      type="simple_interface.py"
+      respawn="false"
+      output="screen"
+  />
+
   
   <arg name="use_sim_time" default="true" />
     <arg name="gui" default="true" />
