@@ -54,11 +54,10 @@ $ ln -s where_git_repos_robot_turret_are_located/interbotix_ros_turrets
 $ ln -s where_git_ioc_are_located/pckg
 ```
 
+Now you must install all requirements of packages that are missing, you can check with:
 
-Once this is done we can compile this file. Just after finishing the previous commands do:
 ```
-$cd ..
-$catkin build
+$ catkin build
 ```
 
 If the compilation is successful, then you are ready to use the project.
@@ -81,12 +80,14 @@ Once this is done if you want to use the simulation mode:
 
 `$roslaunch pckg pantilt.launch`
 
-It is possible that for the gazebo part you have an error when launching it with roslaunch, if this is the case go to interbotix_ros_turrets then interbotix_ros_turrets then interbotix_xsturret_gazebo, go to the launch folder then comment out the line:
-
- `<arg name="rviz_frame" value="$(arg rviz_frame)"/>` 
- 
-Recompile then restart roslaunch and the simulation will start.
-
 After that when the project starts, in the console you will be able to use the TELEOP node to move the robot, the slider interface for moving the pan and tilt module, 3d maps, 2d maps, camera POV or many thing more, they are publicated as topics for you to subscribe, we suggest exploring topic list and node introspection.
 
 If all goes well, you will see the robot doing what you asked it to do. Now it's up to you, you can develop, modify or just use this project.
+
+You can change maps editing the world launch setting in 
+
+`~/pckg/launch/xturret_gazebo.launch`
+
+instead of the default route you can change it to any gazebo map that you want, you can do this calling the argument at launch or simply modifiying the default setting.
+`<arg name="world_name" default="$(find jackal_gazebo)/worlds/jackal_race.world" />`
+
