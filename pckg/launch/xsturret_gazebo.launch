@@ -49,6 +49,10 @@
     <arg name="external_urdf_loc"                 value="$(arg external_urdf_loc)"/>
     <arg name="use_rviz"                          value="$(arg use_rviz)"/>
   </include>
+
+  <arg name="x" default="0" />
+  <arg name="y" default="0" />
+  <arg name="z" default="0.15" />
   <node
     name="urdf_spawner"
     pkg="gazebo_ros"
@@ -56,6 +60,6 @@
     respawn="false"
     output="screen"
     ns="$(arg robot_name)"
-	  args="-urdf -model $(arg robot_model) -param robot_description"/>
+	  args="-urdf -model $(arg robot_model) -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/>
 
 </launch>

@@ -15,7 +15,7 @@ After this create a git_repos, in this folder, create two folders (ioc and robot
 
 Now open a terminal (Terminator) install following the previous tutorial. Why use Terminator? Terminator organizes terminals in a grid. It is useful because many terminals are usually needed simultaneously when working with ROS. 
 Then using the command cd [path] go to the folder you created (git_repos/ioc). Once you are inside do:
-`$ git clone [project git https links]` with this [link](https://gitioc.upc.edu/quentin.simon/ros_internship_widowx-xm430.git)
+`$ git clone [project git https links]` with this [link]( https://github.com/callofoscary/DIMECA-Project/tree/pruebas )
  
 * Open a second terminal and go to the folder git_ repos/robot_turret 
 * Clone this repos in that folder :  
@@ -53,13 +53,7 @@ $ ln -s where_git_repos_robot_turret_are_located/interbotix_ros_toolboxes
 $ ln -s where_git_repos_robot_turret_are_located/interbotix_ros_turrets
 $ ln -s where_git_ioc_are_located/pckg
 ```
-For example, when I tested my path was:
 
-![command](images/command_ln.png)
-
-For pckg the command was :  
-`$ ln -s ~/Escriptori/Stage_exo/tst/intership/ros_internship_widowx-xm430/pckg`  
-Or `ln -s /home/users/quentin.simon/Escriptori/Stage_exo/git-repos-tuto/ioc/ros_internship_widowx-xm430/pckg`
 
 Once this is done we can compile this file. Just after finishing the previous commands do:
 ```
@@ -85,29 +79,14 @@ Open a terminal, go to the WidowX_XM430 directory then catkin_ws, once here comp
 
 Once this is done if you want to use the simulation mode:
 
-`$roslaunch interbotix_xsturret_gazebo xsturret_gazebo.launch robot_model:=wxxms`
+`$roslaunch pckg pantilt.launch`
 
 It is possible that for the gazebo part you have an error when launching it with roslaunch, if this is the case go to interbotix_ros_turrets then interbotix_ros_turrets then interbotix_xsturret_gazebo, go to the launch folder then comment out the line:
 
  `<arg name="rviz_frame" value="$(arg rviz_frame)"/>` 
  
 Recompile then restart roslaunch and the simulation will start.
-Or if you are not in simulation but you want to move the physical robot do:
 
-`roslaunch interbotix_xsturret_control xsturret_control.launch robot_model:=wxxms`
+After that when the project starts, in the console you will be able to use the TELEOP node to move the robot, the slider interface for moving the pan and tilt module, 3d maps, 2d maps, camera POV or many thing more, they are publicated as topics for you to subscribe, we suggest exploring topic list and node introspection.
 
-After that open a second terminal, go to the same directory as before, compile the program to be sure you have no problem with catkin build, then do:
-
-`$ source devel/setup.bash`
-
-Then run the program:
-
-`rosrun pckg pan_tilt`
-
-For information, the project mainly works with services, check how to use services on the tutorial to be able to use the code correctly. There are only functions that allow the robot to move alone, which launches directly into the main function of pan_tilt.cpp.
-
-Here is an example run:
-
-![example](images/example.png)
-
-If all goes well, you will see the robot doing what you asked it to do using the pan_tilt.cpp program. Now it's up to you, you can develop, modify or just use this project.
+If all goes well, you will see the robot doing what you asked it to do. Now it's up to you, you can develop, modify or just use this project.
